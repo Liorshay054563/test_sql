@@ -67,13 +67,27 @@ LEFT JOIN tours
 on tourists.tour_id = tours.id
 WHERE tourists.tour_id is NULL
 ----
-DELETE FROM tourists 
-WHERE tour_id is null LIMIT 1
+DELETE FROM tourists
+WHERE id  = (SELECT id FROM tourists
+WHERE tour_id is NULL limit 1)
 ו)
 SELECT * FROM tours
 LEFT JOIN tourists
 on tours.id = tourists.tour_id
 WHERE tourists.tour_id is NULL
+----
+UPDATE tours
+set end_date = '2026-04-11' 
+WHERE start_date = (SELECT start_date FROM tours
+LEFT JOIN tourists
+on tours.id = tourists.tour_id
+WHERE tourists.tour_id is NULL)
 ז)
+SELECT count(*) as tours_without_tourists FROM tours
+LEFT JOIN tourists
+on tours.id = tourists.tour_id
+WHERE tourists.tour_id is NULL
 ח)
+SELECT *  FROM tourists
+CROSS JOIN tours
 
