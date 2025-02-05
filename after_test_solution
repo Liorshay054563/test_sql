@@ -41,3 +41,39 @@ h)ט
 SELECT count(id),language from movies
 GROUP by language
 HAVING count(id) >= 3 -- more than 3 movies
+
+3) joins
+א)
+SELECT * FROM tourists
+INNER JOIN countries 
+on tourists.country_id = countries.id
+ב)
+SELECT * FROM tourists 
+INNER JOIN tours 
+on tourists.tour_id = tours.id
+ג)
+SELECT * FROM tourists
+LEFT JOIN tours 
+on tourists.tour_id = tours.id
+ד)
+SELECT * FROM tourists
+full JOIN tours 
+on tourists.tour_id = tours.id
+FULL JOIN countries
+on tourists.country_id = countries.id
+ה)
+SELECT * FROM tourists 
+LEFT JOIN tours 
+on tourists.tour_id = tours.id
+WHERE tourists.tour_id is NULL
+----
+DELETE FROM tourists 
+WHERE tour_id is null LIMIT 1
+ו)
+SELECT * FROM tours
+LEFT JOIN tourists
+on tours.id = tourists.tour_id
+WHERE tourists.tour_id is NULL
+ז)
+ח)
+
